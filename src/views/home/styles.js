@@ -5,9 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     ContainerTaskCar: {
-        marginLeft: 30,
-        marginRight: 30,
-        marginBottom: 40,
+        margin: 30,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',

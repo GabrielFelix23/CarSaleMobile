@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, ActivityIndicator } from 'react-native'
 
 import styles from './styles'
 
@@ -11,11 +11,14 @@ import api from '../../services/api'
 
 export default function Home() {
   const [list, setList] = useState([])
+  const [loading, setLoading] = useState(false)
 
   async function CarList(){
+    setLoading(true)
     await api.get('/filter/all/11:11:11:11:11:11')
     .then((response) => {
       setList(response.data)
+      setLoading(false)
     })
   }
 
@@ -28,9 +31,14 @@ export default function Home() {
 
       <ScrollView>
         <View style={styles.ContainerTaskCar}>
-          {list.map((l) => (
-            <TaskCar model={l.model} price={l.price} km={l.km}/>
-          ))}
+          {
+            loading ?
+              <ActivityIndicator color={'red'} size={50}/>
+            :
+            list.map((l) => (
+              <TaskCar model={l.model} price={l.price} km={l.km}/>
+            ))
+          }
         </View>
       </ScrollView>
 
