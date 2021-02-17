@@ -9,7 +9,7 @@ import TaskCar from '../../components/taskCar'
 
 import api from '../../services/api'
 
-export default function Home() {
+export default function Home({navigation}) {
   const [list, setList] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -20,6 +20,10 @@ export default function Home() {
       setList(response.data)
       setLoading(false)
     })
+  }
+
+  function New(){
+    navigation.navigate('Sell')
   }
 
   useEffect(() => {
@@ -36,13 +40,13 @@ export default function Home() {
               <ActivityIndicator color={'red'} size={50}/>
             :
             list.map((l) => (
-              <TaskCar model={l.model} price={l.price} km={l.km}/>
+              <TaskCar model={l.model} price={l.price} km={l.km} brand={l.brand}/>
             ))
           }
         </View>
       </ScrollView>
 
-      <Footer task={'add'}/>
+      <Footer task={'add'} onPress={New}/>
     </View>
   )
 }
