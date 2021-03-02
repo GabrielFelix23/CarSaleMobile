@@ -40,7 +40,7 @@ export default function Home({navigation}) {
               <ActivityIndicator color={'red'} size={50}/>
             :
             list.map((l) => (
-              <TaskCar model={l.model} price={l.price} km={l.km} brand={l.brand}/>
+              <TaskCar model={l.model} price={l.price} km={l.km} brand={l.brand} navigation={navigation}/>
             ))
           }
         </View>
