@@ -26,6 +26,10 @@ export default function Home({navigation}) {
     navigation.navigate('Sell')
   }
 
+  function show(id){
+    navigation.navigate('Car', {idTask: id})
+  }
+
   useEffect(() => {
     CarList()
   }, [])
@@ -40,7 +44,7 @@ export default function Home({navigation}) {
               <ActivityIndicator color={'red'} size={50}/>
             :
             list.map((l) => (
-              <TaskCar model={l.model} price={l.price} km={l.km} brand={l.brand} navigation={navigation}/>
+              <TaskCar model={l.model} price={l.price} km={l.km} brand={l.brand} onPress={() => show(l._id)}/>
             ))
           }
         </View>

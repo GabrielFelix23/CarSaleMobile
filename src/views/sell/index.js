@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {View, Text, TextInput, KeyboardAvoidingView, ScrollView, Alert} from 'react-native'
 
 //Components
@@ -9,6 +9,7 @@ import api from '../../services/api'
 import styles from './styles'
 
 export default function Sell({navigation}){
+    const [id, setId] = useState(false)
     const [brand, setBrand] = useState()
     const [price, setPrice] = useState()
     const [model, setModel] = useState()
@@ -60,7 +61,7 @@ export default function Sell({navigation}){
         if(!city){
             Alert.alert("Cidade é obrigatório!")
         }
-        
+
         await api.post('/', {
             macaddress,
             brand,
@@ -79,6 +80,31 @@ export default function Sell({navigation}){
             navigation.navigate('Home')
         })
     }
+
+    async function putCar(){
+        await api.get(`/filter/${id}`)
+        .then((response) => {
+            setBrand(response.data.brand)
+            setModel(response.data.model)
+            setPrice(response.data.price)
+            setChassis(response.data.chassis)
+            setYear(response.data.year)
+            setKm(response.data.km)
+            setExchange(response.data.exchange)
+            setDoors(response.data.doors)
+            setColor(response.data.color)
+            setShield(response.data.shield)
+            setState(response.data.state)
+            setCity(response.data.city) 
+        })
+    }
+
+    useEffect(() => {
+        if(navigation.state.params){
+            setId(navigation.state.params.idTask)
+            putCar()
+        }
+    },[])
 
     return(
         <KeyboardAvoidingView style={styles.container}>

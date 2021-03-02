@@ -4,12 +4,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import car from '../../assets/car.png'
 
-export default function TaskCar({model, price, km, navigation}){
-
-    function plus(){
-        navigation.navigate('Car')
-    }
-
+export default function TaskCar({model, price, km, onPress}){
     return(
         <View style={styles.Container}>
             <View style={styles.ContainerTask}>
@@ -21,7 +16,7 @@ export default function TaskCar({model, price, km, navigation}){
                     <Text style={styles.TextDescription}>KM/H {km}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={plus}>
+                <TouchableOpacity style={styles.button} onPress={onPress}>
                     <Text style={styles.TextButton}>Ver +</Text>
                 </TouchableOpacity>
             </View>
