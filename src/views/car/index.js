@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Alert} from 'react-native'
 
 import Header from '../../components/header'
 
@@ -17,6 +17,10 @@ export default function Car({navigation}){
         })
     }
 
+    function editCar(id){
+        navigation.navigate('Sell', {idTask: id})
+    }
+
     async function deleteCar(){
         await api.delete(`/delete/${id}`)
         .then(() => {
@@ -24,15 +28,25 @@ export default function Car({navigation}){
         })
     }
 
-    function editCar(id){
-        navigation.navigate('Sell', {idTask: id})
+    async function removeCar(){
+        Alert.alert(
+            'Remover tarefa',
+            'Deseja realmente remover essa tarefa?',
+            [
+                {text: 'Cancelar'},
+                {text: 'Confirme', onPress: () => deleteCar()}
+            ],
+            {canceleble: true}
+        )
     }
+
+
 
     useEffect(() => {
         if(navigation.state.params){
             setId(navigation.state.params.idTask)
+            ShowCarId()
         }
-        ShowCarId()
     },[])
 
     return(
@@ -60,7 +74,7 @@ export default function Car({navigation}){
                         <Text style={styles.textButton}>EDITAR</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.buttonDelete} onPress={deleteCar}>
+                    <TouchableOpacity style={styles.buttonDelete} onPress={removeCar}>
                         <Text style={styles.textButton}>DELETAR</Text>
                     </TouchableOpacity>
                 </View>

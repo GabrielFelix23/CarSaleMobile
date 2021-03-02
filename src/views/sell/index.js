@@ -62,26 +62,46 @@ export default function Sell({navigation}){
             Alert.alert("Cidade é obrigatório!")
         }
 
-        await api.post('/', {
-            macaddress,
-            brand,
-            price,
-            model,
-            chassis,
-            year,
-            km,
-            exchange,
-            doors,
-            color,
-            shield,
-            state,
-            city
-        }).then(() => {
-            navigation.navigate('Home')
-        })
+        if(id){
+            await api.put(`/update/${id}`,{
+                macaddress,
+                brand,
+                price,
+                model,
+                chassis,
+                year,
+                km,
+                exchange,
+                doors,
+                color,
+                shield,
+                state,
+                city
+            }).then(() => {
+                navigation.navigate('Car')
+            })
+        }else{
+            await api.post('/', {
+                macaddress,
+                brand,
+                price,
+                model,
+                chassis,
+                year,
+                km,
+                exchange,
+                doors,
+                color,
+                shield,
+                state,
+                city
+            }).then(() => {
+                navigation.navigate('Home')
+            })
+        }
     }
 
-    async function putCar(){
+    async function loadCar(){
         await api.get(`/filter/${id}`)
         .then((response) => {
             setBrand(response.data.brand)
@@ -102,7 +122,7 @@ export default function Sell({navigation}){
     useEffect(() => {
         if(navigation.state.params){
             setId(navigation.state.params.idTask)
-            putCar()
+            loadCar()
         }
     },[])
 
