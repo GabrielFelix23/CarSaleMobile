@@ -1,29 +1,41 @@
 import React, {useState, useEffect} from 'react'
-import { View, ScrollView, ActivityIndicator } from 'react-native'
+import { View, ScrollView, ActivityIndicator} from 'react-native'
 
 import styles from './styles'
 
 import Header from '../../components/header'
 import Footer from '../../components/footer'
 import TaskCar from '../../components/taskCar'
+import * as Network from 'expo-network'
 
 import api from '../../services/api'
 
 export default function Home({navigation}) {
   const [list, setList] = useState([])
   const [loading, setLoading] = useState(false)
+  const [macaddress, setMacaddress] = useState()
+
+  async function getMacAddress(){
+    await Network.getMacAddressAsync().then(mac => {
+        setMacaddress(mac)
+    })
+  }
 
   async function CarList(){
     setLoading(true)
-    await api.get('/filter/all/11:11:11:11:11:11')
+    await api.get(`/filter/all/${macaddress}`)
     .then((response) => {
       setList(response.data)
       setLoading(false)
     })
   }
 
-  function New(){
+  function sell(){
     navigation.navigate('Sell')
+  }
+
+  function qrcode(){
+    navigation.navigate('QRCode')
   }
 
   function show(id){
@@ -31,11 +43,12 @@ export default function Home({navigation}) {
   }
 
   useEffect(() => {
-    CarList()
+      getMacAddress()
+      CarList()
   }, [])
   return (
     <View style={styles.Container}>
-      <Header task={'add'}/>
+      <Header task={'add'} navigation={qrcode}/>
 
       <ScrollView>
         <View style={styles.ContainerTaskCar}>
@@ -50,7 +63,7 @@ export default function Home({navigation}) {
         </View>
       </ScrollView>
 
-      <Footer task={'add'} onPress={New}/>
+      <Footer task={'add'} onPress={sell}/>
     </View>
   )
 }

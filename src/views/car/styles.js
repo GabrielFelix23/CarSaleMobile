@@ -13,10 +13,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#A4A4A4',
         borderRadius: 5,
-        width: '55%',
+        width: 'auto',
         height: 'auto',
         paddingVertical: 30,
         paddingLeft: '15%',
+        paddingRight: '15%'
     },
     text: {
         fontSize: 19,

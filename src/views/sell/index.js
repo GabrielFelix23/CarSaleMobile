@@ -5,6 +5,7 @@ import {View, Text, TextInput, KeyboardAvoidingView, ScrollView, Alert} from 're
 import Header from '../../components/header'
 import Footer from '../../components/footer'
 import api from '../../services/api'
+import * as Network from 'expo-network'
 
 import styles from './styles'
 
@@ -22,7 +23,13 @@ export default function Sell({navigation}){
     const [shield, setShield] = useState()
     const [state, setState] = useState()
     const [city, setCity] = useState()
-    const [macaddress, setMacaddress] = useState('11:11:11:11:11:11')
+    const [macaddress, setMacaddress] = useState()
+
+    async function getMacAddress(){
+        await Network.getMacAddressAsync().then(mac => {
+            setMacaddress(mac)
+        })
+    }
 
     async function save(){
         if(!brand){
@@ -119,7 +126,13 @@ export default function Sell({navigation}){
         })
     }
 
+    function Back(){
+        navigation.navigate('Home')
+    }
+
     useEffect(() => {
+        getMacAddress()
+        
         if(navigation.state.params){
             setId(navigation.state.params.idTask)
             loadCar()
@@ -128,7 +141,7 @@ export default function Sell({navigation}){
 
     return(
         <KeyboardAvoidingView style={styles.container}>
-            <Header task={'back'} navigation={navigation}/>
+            <Header task={'back'} navigation={Back}/>
                 <ScrollView contentContainerStyle={styles.containerInputs}>
                     
                     <Text style={styles.label}>Marca</Text>

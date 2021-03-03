@@ -40,14 +40,12 @@ export default function Car({navigation}){
         )
     }
 
-
-
     useEffect(() => {
         if(navigation.state.params){
             setId(navigation.state.params.idTask)
             ShowCarId()
         }
-    },[])
+    },[list])
 
     return(
         <View style={styles.container}>
