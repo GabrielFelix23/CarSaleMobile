@@ -5,11 +5,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         backgroundColor: '#F53131',
-        position: 'absolute',
+        position: 'relative',
         bottom: 0,
         alignItems: 'center',
         borderTopWidth: 5,
-        borderTopColor: '#CC0000'
+        borderTopColor: '#CC0000',
+        marginTop:40
     },
     button:{
         position: 'relative',

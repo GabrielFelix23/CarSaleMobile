@@ -148,10 +148,10 @@ export default function Sell({navigation}){
                     <TextInput style={styles.input} maxLength={30} maxLength={30} value={brand} onChangeText={(text) => setBrand(text)} placeholder="Marca..."/>
 
                     <Text style={styles.label}>Modelo</Text>
-                    <TextInput style={styles.input} maxLength={30} value={price} onChangeText={(text) => setPrice(text)} placeholder="Modelo..."/>
+                    <TextInput style={styles.input} maxLength={30} value={model} onChangeText={(text) => setModel(text)} placeholder="Modelo..."/>
 
                     <Text style={styles.label}>Preço</Text>
-                    <TextInput style={styles.input} maxLength={30} value={model} onChangeText={(text) => setModel(text)} placeholder="Preço..."/>
+                    <TextInput style={styles.input} maxLength={30} value={price} onChangeText={(text) => setPrice(text)} placeholder="Preço..."/>
 
                     <Text style={styles.label}>Chassi</Text>
                     <TextInput style={styles.input} maxLength={30} value={chassis} onChangeText={(text) => setChassis(text)} placeholder="Chassi..."/>
