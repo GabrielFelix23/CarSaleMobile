@@ -40,6 +40,10 @@ export default function Car({navigation}){
         )
     }
 
+    function Back(){
+        navigation.navigate('Home')
+    }
+
     useEffect(() => {
         if(navigation.state.params){
             setId(navigation.state.params.idTask)
@@ -49,7 +53,7 @@ export default function Car({navigation}){
 
     return(
         <View style={styles.container}>
-            <Header task="back" navigation={navigation}/>
+            <Header task="back" navigation={Back}/>
             
             <View style={styles.containerCar}>
                 <View style={styles.car}>
