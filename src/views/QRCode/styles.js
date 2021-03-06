@@ -6,12 +6,13 @@ const styles = StyleSheet.create({
     },
     header:{
         width: '100%',
-        height: 70,
+        height: 90,
         backgroundColor: '#F53131',
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomColor: '#CC0000',
-        borderBottomWidth: 5
+        borderBottomWidth: 5,
+        paddingTop: 20,
     },
     headerText:{
         color: "#fff",
@@ -24,13 +25,13 @@ const styles = StyleSheet.create({
     buttons:{
         flexDirection: 'row',
         position: 'relative',
-        top: '120%'
+        top: '144.5%',
+        width: '100%',
     },
     buttonBack:{
         backgroundColor: '#F53131',
-        width: 200,
+        width: '50%',
         height: 50,
-        borderTopLeftRadius: 10,
 
         alignItems: 'center',
         justifyContent: 'center'
@@ -41,18 +42,16 @@ const styles = StyleSheet.create({
     },
     buttonScan:{
         backgroundColor: '#0080FF',
-        width: 200,
+        width: '50%',        
         height: 50,
-        borderBottomRightRadius: 10,
 
         alignItems: 'center',
         justifyContent: 'center'
     },
     buttonScanInative:{
         backgroundColor: '#0080FF',
-        width: 200,
+        width: '50%',
         height: 50,
-        borderBottomRightRadius: 10,
         opacity: 0.5,
 
         alignItems: 'center',

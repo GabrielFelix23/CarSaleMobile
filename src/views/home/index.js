@@ -43,9 +43,11 @@ export default function Home({navigation}) {
   }
 
   useEffect(() => {
-      getMacAddress()
-      CarList()
-  }, [])
+      getMacAddress().then(() => {
+        CarList()
+      })
+  },[])
+
   return (
     <View style={styles.Container}>
       <Header task={'add'} navigation={qrcode}/>

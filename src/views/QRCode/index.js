@@ -5,9 +5,6 @@ import * as Network from 'expo-network'
 
 import styles from './styles'
 
-import Header from '../../components/header'
-import Footer from '../../components/footer'
-
 export default function QRCode({navigation}){
     const [hasPermission, setHasPermission] = useState(null)
     const [scanned, setScanned] = useState(false)
@@ -20,7 +17,7 @@ export default function QRCode({navigation}){
 
     const handleBarCodeScanned = ({data}) => {
         setScanned(true);
-        if(data == 'getMacaddress')
+        if(data === 'getMacaddress')
             getMacAddress()
         else
             Alert.alert('QRCODE inválido!')
